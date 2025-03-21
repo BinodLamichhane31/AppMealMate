@@ -18,11 +18,15 @@ class AuthViewModel(private val repository: AuthRepository): ViewModel() {
 
     fun register(email: String, password: String,name: String) {
         viewModelScope.launch {
-            val newUser = repository.registerUser(email, password, name)
-            if (newUser != null) {
-                _user.value = newUser
-            } else {
-                _error.value = "Registration failed"
+            try{
+                val newUser = repository.registerUser(email, password, name)
+                if (newUser != null) {
+                    _user.value = newUser
+
+            }
+
+            } catch (e: Exception){
+                _error.value = e.message
             }
         }
     }
