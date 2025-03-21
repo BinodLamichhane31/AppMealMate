@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_edit"
+        android:icon="@drawable/baseline_edit_24"
+        android:title="Edit"/>
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/baseline_delete_outline_24"
+        android:title="Delete"/>
+    <item
+        android:id="@+id/menu_mark_purchased"
+        android:title="Mark as Purchased"
+        android:orderInCategory="1"
+        app:showAsAction="never" />
+
+</menu>
