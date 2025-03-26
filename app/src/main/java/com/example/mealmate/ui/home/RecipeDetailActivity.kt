@@ -9,8 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.mealmate.BaseActivity
-import com.example.mealmate.R
-import com.example.mealmate.databinding.ActivityLoginBinding
 import com.example.mealmate.databinding.ActivityRecipeDetailBinding
 import com.example.mealmate.model.Recipe
 import com.example.mealmate.utils.ImageUtils

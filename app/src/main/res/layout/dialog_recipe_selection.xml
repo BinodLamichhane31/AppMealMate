@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <SearchView
+        android:id="@+id/searchRecipeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Recipe"
+        android:textColor="@color/black"
+        android:background="@drawable/search_bg"
+        android:textColorHint="@color/black"/>
+
+    <ListView
+        android:id="@+id/recipeListView"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+</LinearLayout>

@@ -45,7 +45,7 @@ class AddRecipeActivity : BaseActivity() {
         spinnerCategory = findViewById(R.id.spinnerCategory)
 
         // ✅ Define categories for dropdown
-        categories = listOf("Breakfast", "Lunch", "Dinner", "Dessert", "Snacks")
+        categories = listOf("Breakfast", "Lunch", "Dinner", "Snacks")
         val adapter = ArrayAdapter(this, R.layout.spinner_item, categories)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategory.adapter = adapter

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/nav_meals"
         android:icon="@drawable/food"
-        android:title="Meals" />
+        android:title="Recipes" />
+
+    <item
+        android:id="@+id/nav_meal_plan"
+        android:icon="@drawable/food"
+        android:title="Meals Plan" />
 
     <item
         android:id="@+id/nav_grocery"
