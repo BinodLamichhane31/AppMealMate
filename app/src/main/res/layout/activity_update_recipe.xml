@@ -45,6 +45,13 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageUpdateRecipe"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/app_logo" />
+
 
     <EditText
         android:id="@+id/etRecipeName"
@@ -131,5 +138,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_btns"
         android:text="Update Recipe"/>
+
+
 
 </LinearLayout>

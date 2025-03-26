@@ -11,6 +11,7 @@ data class Recipe(
     val ingredients: List<String> = listOf(),
     val instructions: String = "",
     val serving: String = "",
-    val userId: String = ""
+    val userId: String = "",
+    val image: String = ""  
 ): Parcelable
 

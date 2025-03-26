@@ -12,7 +12,7 @@ class RecipeRepositoryImpl : RecipeRepository {
     override fun addRecipe(recipe: Recipe, callback: (Boolean) -> Unit) {
         val recipeId = database.push().key ?: return
         val userId = auth.currentUser?.uid ?: return
-        val newRecipe = recipe.copy(id = recipeId, userId = userId) // Assign userId to recipe
+        val newRecipe = recipe.copy(id = recipeId, userId = userId)
 
         database.child(recipeId).setValue(newRecipe)
             .addOnCompleteListener { callback(it.isSuccessful) }
@@ -43,4 +43,20 @@ class RecipeRepositoryImpl : RecipeRepository {
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
+
+    override fun getRecipeById(recipeId: String, callback: (Recipe?) -> Unit) {
+        database.child(recipeId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val recipe = snapshot.getValue(Recipe::class.java)
+                callback(recipe)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null)
+            }
+        })
+    }
+
+
+
 }

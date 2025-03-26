@@ -8,6 +8,7 @@ interface RecipeRepository {
     fun updateRecipe(recipe: Recipe, callback: (Boolean) -> Unit)
     fun deleteRecipe(recipeId: String, callback: (Boolean) -> Unit)
     fun getRecipes(callback: (List<Recipe>) -> Unit)
+    fun getRecipeById(recipeId: String, callback: (Recipe?) -> Unit)
 }
 
 

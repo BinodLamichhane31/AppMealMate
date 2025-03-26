@@ -45,6 +45,13 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/imageAddBtn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/baseline_add_24" />
+
     <EditText
         android:id="@+id/etRecipeName"
         android:layout_width="380dp"
@@ -133,6 +140,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_btns"
         android:text="Add Recipe"/>
+
+
 
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import com.example.mealmate.R
 import com.example.mealmate.model.Recipe
 import com.example.mealmate.ui.home.RecipeDetailActivity
 import com.example.mealmate.ui.home.UpdateRecipeActivity
+import com.example.mealmate.utils.ImageUtils
 import com.example.mealmate.viewmodel.RecipeViewModel
 
 class RecipeAdapter(private var recipes: List<Recipe>, private val viewModel: RecipeViewModel) :
@@ -23,6 +24,7 @@ class RecipeAdapter(private var recipes: List<Recipe>, private val viewModel: Re
         val tvRecipeCategory: TextView = view.findViewById(R.id.category)
         val btnEdit: ImageView = view.findViewById(R.id.rEdit)
         val btnDelete: ImageView = view.findViewById(R.id.rDelete)
+        val recipeImage: ImageView = view.findViewById(R.id.recipeImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
@@ -35,15 +37,20 @@ class RecipeAdapter(private var recipes: List<Recipe>, private val viewModel: Re
         holder.tvRecipeName.text = recipe.name
         holder.tvRecipeCategory.text = "Category: ${recipe.category}"
 
+        if (recipe.image.isNotEmpty()) {
+            val bitmap = ImageUtils.decodeBase64ToImage(recipe.image)
+            bitmap?.let { holder.recipeImage.setImageBitmap(it) }
+        }
+
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, RecipeDetailActivity::class.java)
-            intent.putExtra("recipe", recipe)
+            intent.putExtra("recipeId", recipe.id)
             holder.itemView.context.startActivity(intent)
         }
 
         holder.btnEdit.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateRecipeActivity::class.java)
-            intent.putExtra("recipe", recipe)
+            intent.putExtra("recipeId", recipe.id)
             holder.itemView.context.startActivity(intent)
         }
 

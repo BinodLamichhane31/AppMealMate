@@ -1,6 +1,8 @@
 package com.example.mealmate.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -10,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mealmate.BaseActivity
 import com.example.mealmate.R
 import com.example.mealmate.model.Recipe
+import com.example.mealmate.utils.ImageUtils
 import com.example.mealmate.viewmodel.RecipeViewModel
 
 class AddRecipeActivity : BaseActivity() {
     private val viewModel: RecipeViewModel by viewModels()
     private lateinit var spinnerCategory: Spinner
     private lateinit var categories: List<String>
+    private var encodedImage: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,14 @@ class AddRecipeActivity : BaseActivity() {
         val etServing = findViewById<EditText>(R.id.etServing)
         val back = findViewById<ImageView>(R.id.arBack)
         back.setOnClickListener{finish()}
+        val btnSelectImage = findViewById<ImageButton>(R.id.imageAddBtn)
+
+        btnSelectImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, 100)
+        }
+
 
         spinnerCategory = findViewById(R.id.spinnerCategory)
 
@@ -59,7 +72,8 @@ class AddRecipeActivity : BaseActivity() {
                     ingredients = ingredients,
                     instructions = instructions,
                     serving = serving,
-                    category = selectedCategory
+                    category = selectedCategory,
+                    image = encodedImage
                 )
                 viewModel.addRecipe(recipe)
                 finish()
@@ -83,6 +97,16 @@ class AddRecipeActivity : BaseActivity() {
                 val imm = getSystemService(InputMethodManager::class.java)
                 imm.restartInput(v)
             }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            val uri = data?.data
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            val imageView = findViewById<ImageButton>(R.id.imageAddBtn)
+            imageView.setImageBitmap(bitmap)
+            encodedImage = ImageUtils.encodeImageToBase64(bitmap)
         }
     }
 }
