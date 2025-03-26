@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/nav_meal_plan"
-        android:icon="@drawable/food"
+        android:icon="@drawable/meal"
         android:title="Meals Plan" />
 
     <item

@@ -71,6 +71,7 @@ class UpdateRecipeActivity : BaseActivity() {
         recipeViewModel.getRecipeById(recipeId)
         recipeViewModel.recipe.observe(this) { fetchedRecipe ->
             if (fetchedRecipe != null) {
+                recipe = fetchedRecipe
                 loadRecipeDetails(fetchedRecipe)
             } else {
                 Toast.makeText(this, "Recipe not found!", Toast.LENGTH_SHORT).show()
@@ -115,9 +116,20 @@ class UpdateRecipeActivity : BaseActivity() {
         progressDialog.setMessage("Updating Recipe...")
         progressDialog.show()
         auth = FirebaseAuth.getInstance() // Initialize FirebaseAuth
-        val userID = auth.currentUser?.uid.toString()
+        val userID = auth.currentUser ?.uid.toString()
         val recipeId = intent.getStringExtra("recipeId") ?: return
-        val updatedRecipe = Recipe(recipeId, name, category, ingredients, instructions, serving, userID, encodedImage)
+
+        // Create a new Recipe object
+        val updatedRecipe = Recipe(
+            recipeId,
+            name,
+            category,
+            ingredients,
+            instructions,
+            serving,
+            userID,
+            if (encodedImage.isNotEmpty()) encodedImage else recipe.image // Use new image if available, otherwise keep existing
+        )
 
         // Use ViewModel to update the recipe
         recipeViewModel.updateRecipe(updatedRecipe)
