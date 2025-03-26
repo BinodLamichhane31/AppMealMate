@@ -1,5 +1,6 @@
 package com.example.mealmate.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,4 +24,18 @@ class MealPlanViewModel : ViewModel() {
             _mealPlans.postValue(mealPlanList)
         }
     }
+
+    fun deleteMealPlan(mealPlanId: String, day: String) {
+        repository.deleteMealPlan(mealPlanId) { success ->
+            if (success) loadMealPlans(day)
+        }
+    }
+
+    fun deleteAllMealPlan() {
+        repository.deleteAllMealPlan() { success ->
+            if (success)
+                Log.d("Clear All","All Cleared")
+        }
+    }
+
 }

@@ -47,12 +47,12 @@ class DayMealFragment : Fragment() {
         addMealButton = view.findViewById(R.id.addRecipeButtonMealPlan)
         recyclerView = view.findViewById(R.id.recyclerViewMealPlan)
 
-        mealAdapter = MealPlanAdapter(emptyList(),viewModel)
+        mealAdapter = MealPlanAdapter(emptyList(),mealPlanViewModel)
         recyclerView.adapter = mealAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         mealPlanViewModel.mealPlans.observe(viewLifecycleOwner, { mealPlans ->
-            val recipes = mealPlans.map { it.recipe }
+            val recipes = mealPlans.map { it }
             mealAdapter.updateData(recipes)
         })
 

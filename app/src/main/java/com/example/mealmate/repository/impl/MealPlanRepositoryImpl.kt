@@ -53,4 +53,14 @@ class MealPlanRepositoryImpl {
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
+    fun deleteMealPlan(mealPlanId: String, callback: (Boolean) -> Unit) {
+        val userId = auth.currentUser ?.uid ?: return
+        database.child(userId).child(mealPlanId).removeValue()
+            .addOnCompleteListener { callback(it.isSuccessful) }
+    }
+    fun deleteAllMealPlan(callback: (Boolean) -> Unit) {
+        val userId = auth.currentUser ?.uid ?: return
+        database.child(userId).removeValue()
+            .addOnCompleteListener { callback(it.isSuccessful) }
+    }
 }

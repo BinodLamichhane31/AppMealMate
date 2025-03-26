@@ -7,7 +7,6 @@
     android:layout_gravity="center_horizontal"
     android:layout_margin="10dp"
     android:padding="10dp"
-    android:orientation="vertical"
     android:elevation="5dp"
     android:layout_marginTop="1dp"
     android:background="@drawable/card_bg">
@@ -41,7 +40,22 @@
         android:text="Category: Breakfast"
         android:textColor="@color/black" />
     </LinearLayout>
+
+
     </LinearLayout>
+    <!-- Push delete button to the end -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_remove_24"
+        android:background="?attr/selectableItemBackground"
+        android:layout_gravity="center" />
 
 
 
